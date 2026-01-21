@@ -21,7 +21,12 @@ export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
 
 
     const handleSubmit = async () => {
+        if(!text) {
+            toast.error('please enter a valid text');
+            return;
+        }
         setLoading(true);
+        
         if(!user) {
             toast.error("Please login before submitting...");
             router.push("/login");
@@ -69,6 +74,7 @@ export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
                     onChange={(e) => setText(e.target.value)}
                     className="w-full rounded-lg p-3 mb-4 bg-white outline-none"
                     rows={4}
+                    required
                 />
 
                 {/* Video URL */}
@@ -77,6 +83,7 @@ export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
                     onChange={(e) => setFile(e.target.files?.[0])}
                     className="w-full rounded-lg p-3 mb-6 bg-white outline-none"
                     accept="video/*"
+                    required
                 />
 
                 <div className="flex justify-end gap-3">
