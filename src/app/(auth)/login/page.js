@@ -1,4 +1,6 @@
 "use client";
+import LottieLoader from "@/app/components/LottieLoader";
+import LottieWelcome from "@/app/components/LottieWelcome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -9,6 +11,9 @@ const Page = () => {
         email: "",
         password: ""
     });
+    const [loading, setLoading] = useState(false);
+    const [welcome, setWelcome] = useState(false);
+
     const router = useRouter();
 
     const handleChange = (e) => {
@@ -17,6 +22,7 @@ const Page = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const res = await fetch("/api/auth/login", {
                 method: "POST",
@@ -28,14 +34,33 @@ const Page = () => {
                 toast.error(data.message || "Login failed");
                 return;
             }
-            
-            toast.success(data.message || "User login successfully");
+
             
             localStorage.setItem("doubtBunk", JSON.stringify(data.user));
-            router.push("/");
+
+            setLoading(false);
+            setWelcome(true);
+            setTimeout(() => {
+                setWelcome(false);
+                router.push("/");
+                toast.success(data.message || "User login successfully");
+            }, 3500);
+
         } catch (error) {
             toast.error("Something went wrong");
         }
+    }
+
+    if (loading) {
+        return (
+            <LottieLoader />
+        )
+    }
+
+    if (welcome) {
+        return (
+            <LottieWelcome />
+        )
     }
 
     return (

@@ -6,7 +6,7 @@ import DoubtModal from "./components/DoubtModal";
 import { toast } from "sonner";
 import DoubtCard from "./components/DoubtCard";
 import DoubtEditModal from "./components/DoubtEditModal";
-import Link from "next/link";
+import LottieLoader from "./components/LottieLoader";
 
 
 export default function Home() {
@@ -16,6 +16,7 @@ export default function Home() {
   const [user, setUser] = useState("");
   const [doubts, setDoubts] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("doubtBunk"));
@@ -24,6 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchDoubts = async () => {
+      setLoading(true);
       if (!user?.id) return;
       const res = await fetch(`/api/doubts/${user.id}`, {
         method: "GET",
@@ -34,6 +36,7 @@ export default function Home() {
       if (data) {
         if (Array.isArray(data?.doubts)) {
           setDoubts(data.doubts);
+          setLoading(false);
         } else {
           setDoubts([]);
         }
@@ -45,6 +48,7 @@ export default function Home() {
 
   const handleAddDoubtSubmit = async (data) => {
     try {
+      setLoading(true);
       data.user = user.id;
       const res = await fetch("/api/doubts", {
         method: "POST",
@@ -55,6 +59,7 @@ export default function Home() {
       if (resData) {
         toast.success(resData.message)
       };
+      setLoading(false);
     } catch (error) {
       toast.error(error);
     }
@@ -62,6 +67,7 @@ export default function Home() {
 
   const handleDoubtDelete = async (id) => {
     try {
+      setLoading(true);
       const res = await fetch(`/api/doubts/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -72,6 +78,7 @@ export default function Home() {
         setRefresh(prev => !prev)
         return;
       };
+      setLoading(false);
     } catch (error) {
       toast.error(error);
     }
@@ -84,6 +91,7 @@ export default function Home() {
 
   const handleEditDoubtSubmit = async(data) => {
     try {
+      setLoading(true);
       const res = await fetch(`/api/doubts/${data.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -95,9 +103,16 @@ export default function Home() {
         setRefresh(prev => !prev)
         return;
       };
+      setLoading(false);
     } catch (error) {
       toast.error(error);
     }
+  }
+
+  if(loading) {
+    return (
+      <LottieLoader />
+    )
   }
 
   return (

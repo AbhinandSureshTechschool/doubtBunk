@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import LottieLoader from "./LottieLoader";
 
 export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
     const [text, setText] = useState("");
@@ -49,6 +50,11 @@ export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
         onClose();
     };
 
+    if(loading) {
+        return (
+            <LottieLoader />
+        )
+    }
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm text-xs">

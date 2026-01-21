@@ -17,6 +17,7 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
+        
         const fetchDoubts = async () => {
             const res = await fetch(`/api/doubts`, {
                 method: "GET",
