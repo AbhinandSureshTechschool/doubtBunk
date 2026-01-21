@@ -10,7 +10,7 @@ export default function DoubtGCard({
 }) {
 
     return (
-        <div className="w-full bg-black border border-green-500 rounded-xl p-2 px-6 shadow-md text-xs grid grid-cols-2">
+        <div className="w-full bg-black border border-green-500 rounded-xl p-4 shadow-md text-xs grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Title */}
             <div className="max-h-18 p-2 overflow-hidden">
                 <h3 className="text-xl font-bold text-white mb-2">

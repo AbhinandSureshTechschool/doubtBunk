@@ -32,6 +32,7 @@ const Page = () => {
             const data = await res.json();
             if (!res.ok) {
                 toast.error(data.message || "Login failed");
+                setLoading(false);
                 return;
             }
 
@@ -42,8 +43,8 @@ const Page = () => {
             setWelcome(true);
             setTimeout(() => {
                 setWelcome(false);
-                router.push("/");
                 toast.success(data.message || "User login successfully");
+                router.push("/");
             }, 3500);
 
         } catch (error) {
