@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function DoubtCard({
     title,
@@ -9,6 +10,23 @@ export default function DoubtCard({
     onDelete,
     doubId
 }) {
+   const [count, setCount] = useState(0);
+
+   useEffect(() => {
+    const fetchCount = async() => {
+        const res = await fetch(`/api/answers/count/${doubId}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        });
+        const result = await res.json();
+        console.log(result)
+        if(result) {
+            setCount(result.count)
+        }
+    }
+    fetchCount()
+   },[doubId])
+
     return (
         <div className="w-full bg-black border border-green-500 rounded-xl p-4 shadow-md text-xs grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Title */}
@@ -29,7 +47,7 @@ export default function DoubtCard({
                 <Link href={`/answers/${doubId}`}
                     className="px-4 py-1.5 rounded-full border border-green-600 text-white font-medium hover:bg-green-800 transition"
                 >
-                    Solutions
+                   <span className="text-red-500 text-xs">{count > 0 && count }</span>  Solutions
                 </Link>
                 <button
                     onClick={onEdit}
