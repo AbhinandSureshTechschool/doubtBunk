@@ -25,8 +25,8 @@ export default function Home() {
 
   useEffect(() => {
     const fetchDoubts = async () => {
-      setLoading(true);
       if (!user?.id) return;
+      setLoading(true);
       const res = await fetch(`/api/doubts/${user.id}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
