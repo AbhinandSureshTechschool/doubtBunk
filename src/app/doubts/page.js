@@ -10,6 +10,7 @@ export default function Page() {
     const [addSolutionModal, setAddSolutionModal] = useState(false);
     const [selectedDoubt, setSelectedDoubt] = useState(null);
     const [user, setUser] = useState(null);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         const savedUser = JSON.parse(localStorage.getItem("doubtBunk"));
@@ -17,7 +18,7 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
-        
+
         const fetchDoubts = async () => {
             const res = await fetch(`/api/doubts`, {
                 method: "GET",
@@ -43,10 +44,10 @@ export default function Page() {
     const handleSolutionSubmit = async (item) => {
         try {
             const data = {
-               text: item.text,
-               videoUrl: item.video,
-               doubtId: selectedDoubt._id,
-               userId: user.id
+                text: item.text,
+                videoUrl: item.video,
+                doubtId: selectedDoubt._id,
+                userId: user.id
             }
             const res = await fetch(`/api/answers`, {
                 method: "POST",
@@ -62,14 +63,30 @@ export default function Page() {
         }
     }
 
+    const filteredDoubts = doubts.filter((item) =>
+        item.title.toLowerCase().includes(searchText.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+
     return (
         <>
             <Navbar />
             <main className="min-h-screen bg-black text-white md:px-28 px-12 pt-40 pb-32 italic">
 
+                {/* Searxch bar */}
+                <div className='w-full p-2 flex justify-center'>
+                    <div className='max-w-full'>
+                        <input type="text" className='w-60 p-2 m-2 rounded-full bg-gray-900 text-white border border-black focus:border-green-500 focus:outline-none' onChange={(e) => setSearchText(e.target.value)} />
+                      
+                    </div>
+                </div>
                 <div className="min-h-screen bg-black py-6">
+
+
+
                     <div className="w-full mx-auto space-y-4">
-                        {doubts.map((item, index) => (
+                        {filteredDoubts.map((item, index) => (
                             <DoubtGCard key={index} title={item.title} description={item.description} addSoltuion={() => handleAddSolution(item)} doubId={item._id} />
                         ))}
                     </div>
