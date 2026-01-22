@@ -19,7 +19,6 @@ export default function DoubtGCard({
                 headers: { "Content-Type": "application/json" },
             });
             const result = await res.json();
-            console.log(result)
             if(result) {
                 setCount(result.count)
             }

@@ -26,7 +26,6 @@ export default function Page() {
 
       const result = await res.json();
       if (result) {
-        console.log(result, ' : after the data fetching from answers....');
         setDoubt(...result.doubt);
         setAnswers(result.answers)
       }
