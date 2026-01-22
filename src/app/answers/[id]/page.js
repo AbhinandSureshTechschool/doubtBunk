@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
 import { useParams } from 'next/navigation';
 import { toast } from 'sonner';
+import LottieLoader from '@/app/components/LottieLoader';
 
 export default function Page() {
   const { id } = useParams();
@@ -10,6 +11,7 @@ export default function Page() {
   const [answers, setAnswers] = useState([]);
   const [user, setUser] = useState(null);
   const [refresh, setrefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("doubtBunk"));
@@ -18,6 +20,7 @@ export default function Page() {
 
 
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       const res = await fetch(`/api/answers/${id}`, {
         method: "GET",
@@ -25,6 +28,7 @@ export default function Page() {
       });
 
       const result = await res.json();
+      setLoading(false);
       if (result) {
         setDoubt(...result.doubt);
         setAnswers(result.answers)
@@ -48,6 +52,12 @@ export default function Page() {
       toast.error(error);
     }
   };
+
+  if(loading) {
+    return (
+      <LottieLoader />
+    )
+  }
 
   return (
     <>
