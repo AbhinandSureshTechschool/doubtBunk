@@ -34,7 +34,7 @@ export default function DoubtEditModal({ isOpen, onClose, onSubmit, doubt }) {
         </button>
 
         <h2 className="text-xl font-bold text-black mb-6 text-center">
-          Edt <span className="text-xl font-bold text-white mb-6 text-center">Doubt</span>
+          Edit <span className="text-xl font-bold text-white mb-6 text-center">Doubt</span>
         </h2>
 
         <form className="space-y-4" onSubmit={handleSubmit}>

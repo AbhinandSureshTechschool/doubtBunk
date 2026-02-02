@@ -76,10 +76,11 @@ const Page = () => {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {/* Email */}
                     <div>
-                        <label className="block text-sm font-medium text-black mb-1">
+                        <label className="block text-sm font-medium text-black mb-1" htmlFor="email">
                             Email
                         </label>
                         <input
+                            id="email"
                             type="email"
                             name="email"
                             value={form.email}
@@ -90,10 +91,11 @@ const Page = () => {
 
                     {/* Password */}
                     <div>
-                        <label className="block text-sm font-medium text-black mb-1">
+                        <label className="block text-sm font-medium text-black mb-1" htmlFor="password">
                             Password
                         </label>
                         <input
+                            id="password"
                             type="password"
                             name="password"
                             value={form.password}

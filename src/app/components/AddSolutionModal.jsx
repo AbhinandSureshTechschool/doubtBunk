@@ -57,7 +57,7 @@ export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
 
     if(loading) {
         return (
-            <LottieLoader />
+            <LottieLoader data-testid="loader"/>
         )
     }
 
@@ -83,7 +83,7 @@ export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
                     onChange={(e) => setFile(e.target.files?.[0])}
                     className="w-full rounded-lg p-3 mb-6 bg-white outline-none"
                     accept="video/*"
-                    required
+                    data-testid="file-input"
                 />
 
                 <div className="flex justify-end gap-3">

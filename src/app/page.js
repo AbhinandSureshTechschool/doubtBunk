@@ -39,6 +39,7 @@ export default function Home() {
           setLoading(false);
         } else {
           setDoubts([]);
+          setLoading(false);
         }
       }
     }

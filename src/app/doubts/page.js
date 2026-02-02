@@ -81,16 +81,15 @@ export default function Page() {
                       
                     </div>
                 </div>
+
                 <div className="min-h-screen bg-black py-6">
-
-
-
                     <div className="w-full mx-auto space-y-4">
                         {filteredDoubts.map((item, index) => (
                             <DoubtGCard key={index} title={item.title} description={item.description} addSoltuion={() => handleAddSolution(item)} doubId={item._id} />
                         ))}
                     </div>
                 </div>
+                
             </main>
 
             {addSolutionModal && <AddSolutionModal isOpen={addSolutionModal} onClose={() => setAddSolutionModal(false)} onSubmit={handleSolutionSubmit} />}

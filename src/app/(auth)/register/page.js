@@ -53,7 +53,7 @@ const Page = () => {
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {/* Name */}
                     <div>
-                        <label className="block text-sm font-medium text-black mb-1">
+                        <label className="block text-sm font-medium text-black mb-1" htmlFor="name">
                             Name
                         </label>
                         <input
@@ -62,12 +62,13 @@ const Page = () => {
                             value={form.name}
                             onChange={handleChange}
                             className="w-full px-4 py-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
+                            id="name"
                         />
                     </div>
 
                     {/* Email */}
                     <div>
-                        <label className="block text-sm font-medium text-black mb-1">
+                        <label className="block text-sm font-medium text-black mb-1" htmlFor="email">
                             Email
                         </label>
                         <input
@@ -76,12 +77,13 @@ const Page = () => {
                             value={form.email}
                             onChange={handleChange}
                             className="w-full px-4 py-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
+                            id="email"
                         />
                     </div>
 
                     {/* Password */}
                     <div>
-                        <label className="block text-sm font-medium text-black mb-1">
+                        <label className="block text-sm font-medium text-black mb-1" htmlFor="password">
                             Password
                         </label>
                         <input
@@ -90,6 +92,7 @@ const Page = () => {
                             value={form.password}
                             onChange={handleChange}
                             className="w-full px-4 py-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-black"
+                            id="password"
                         />
                     </div>
 

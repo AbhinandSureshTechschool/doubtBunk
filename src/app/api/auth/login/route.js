@@ -4,11 +4,17 @@ import User from "@/app/models/User";
 import bcrypt from 'bcryptjs'
 import { NextResponse } from "next/server";
 import { loginSchema } from "@/app/lib/validators";
-import { cookies } from "next/headers";
 
 export async function POST(req) {
     try {
         const { email, password } = await req.json();
+
+        if (!email || !password) {
+            return NextResponse.json(
+                { message: "Email and Password required" },
+                { status: 400 }
+            )
+        }
 
         const parsed = loginSchema.safeParse({ email, password });
 
@@ -23,13 +29,6 @@ export async function POST(req) {
                 { status: 400 }
             );
         };
-
-        if (!email || !password) {
-            return NextResponse.json(
-                { message: "Email and Password required" },
-                { status: 400 }
-            )
-        }
 
         await connectDB();
 

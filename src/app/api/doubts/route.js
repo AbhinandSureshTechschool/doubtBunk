@@ -20,7 +20,7 @@ export async function POST(req) {
             { status: 500 }
         );
     }
-};
+};    
 
 export async function GET() {
     try {
