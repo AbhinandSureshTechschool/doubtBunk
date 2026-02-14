@@ -34,13 +34,15 @@ export default function DoubtEditModal({ isOpen, onClose, onSubmit, doubt }) {
         </button>
 
         <h2 className="text-xl font-bold text-black mb-6 text-center">
-          Edit <span className="text-xl font-bold text-white mb-6 text-center">Doubt</span>
+          Edits <span className="text-xl font-bold text-white mb-6 text-center">Doubts</span>
         </h2>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           {/* Title */}
           <input
+            data-cy="edit-title-input"
             type="text"
+            name="title"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -50,6 +52,8 @@ export default function DoubtEditModal({ isOpen, onClose, onSubmit, doubt }) {
 
           {/* Description */}
           <textarea
+            data-cy="edit-description-input"
+            name="description"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}

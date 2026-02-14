@@ -11,9 +11,7 @@ describe("LottieLoader", () => {
     test("render the loader overlay", () => {
         render(<LottieLoader />);
 
-        expect(
-            screen.getByTestId("lottie-animation")
-        ).toBeInTheDocument();
+        expect(screen.getByTestId("lottie-animation")).toBeInTheDocument();
         expect(screen.getByTestId("loader-overlay")).toBeInTheDocument();
     });
 });

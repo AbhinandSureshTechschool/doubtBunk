@@ -42,9 +42,9 @@ const Page = () => {
             setLoading(false);
             setWelcome(true);
             setTimeout(() => {
-                setWelcome(false);
                 toast.success(data.message || "User login successfully");
                 router.push("/");
+                // setWelcome(false);
             }, 3500);
 
         } catch (error) {

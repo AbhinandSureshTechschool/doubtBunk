@@ -71,7 +71,7 @@ describe("DoubtModal", () => {
             target: { value: "Test description" },
         });
 
-        fireEvent.click(screen.getByText(/add doubt/i));
+        fireEvent.click(screen.getByText(/Submit/i));
 
         expect(toast.error).toHaveBeenCalledWith(
             "Please login before submitting..."
@@ -97,7 +97,7 @@ describe("DoubtModal", () => {
             target: { value: "This is a doubt description" },
         });
 
-        fireEvent.click(screen.getByText(/add doubt/i));
+        fireEvent.click(screen.getByText(/Submit/i));
 
         expect(mockOnSubmit).toHaveBeenCalledWith({
             title: "My Doubt",
@@ -111,6 +111,6 @@ describe("DoubtModal", () => {
         renderModal();
         fireEvent.click(screen.getByText('×'));
         expect(mockOnClose).toHaveBeenCalled();
-    })
+    });
 
-})
+});

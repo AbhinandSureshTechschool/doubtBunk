@@ -41,7 +41,7 @@ describe('Navbar', () => {
     render(<Navbar />)
 
     expect(screen.getByText(/logout/i)).toBeInTheDocument()
-  })
+  });
 
   test('logout clears localStorage and redirects', () => {
     window.localStorage.getItem.mockReturnValue(

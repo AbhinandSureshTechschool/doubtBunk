@@ -77,19 +77,23 @@ export default function Page() {
                 {/* Searxch bar */}
                 <div className='w-full p-2 flex justify-center'>
                     <div className='max-w-full'>
-                        <input type="text" className='w-60 p-2 m-2 rounded-full bg-gray-900 text-white border border-black focus:border-green-500 focus:outline-none' onChange={(e) => setSearchText(e.target.value)} />
-                      
+                        <input type="text" id="input" data-testid="search-input" className='w-60 p-2 m-2 rounded-full bg-gray-900 text-white border border-black focus:border-green-500 focus:outline-none' onChange={(e) => setSearchText(e.target.value)} />
                     </div>
                 </div>
 
                 <div className="min-h-screen bg-black py-6">
                     <div className="w-full mx-auto space-y-4">
                         {filteredDoubts.map((item, index) => (
-                            <DoubtGCard key={index} title={item.title} description={item.description} addSoltuion={() => handleAddSolution(item)} doubId={item._id} />
+                            <DoubtGCard 
+                            key={index} 
+                            title={item.title} 
+                            description={item.description} 
+                            addSoltuion={() => handleAddSolution(item)} doubId={item._id} 
+                            />
                         ))}
                     </div>
                 </div>
-                
+
             </main>
 
             {addSolutionModal && <AddSolutionModal isOpen={addSolutionModal} onClose={() => setAddSolutionModal(false)} onSubmit={handleSolutionSubmit} />}

@@ -69,6 +69,7 @@ export default function AddSolutionModal({ isOpen, onClose, onSubmit }) {
 
                 {/* Text Solution */}
                 <textarea
+                    name='text'
                     placeholder="Write your solution..."
                     value={text}
                     onChange={(e) => setText(e.target.value)}

@@ -54,6 +54,7 @@ export default function DoubtModal({ isOpen, onClose, onSubmit }) {
         <form className="space-y-4" onSubmit={handleSubmit}>
           {/* Title */}
           <input
+            name="title"
             type="text"
             placeholder="Title"
             value={title}
@@ -64,6 +65,7 @@ export default function DoubtModal({ isOpen, onClose, onSubmit }) {
 
           {/* Description */}
           <textarea
+            name="description"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -75,7 +77,7 @@ export default function DoubtModal({ isOpen, onClose, onSubmit }) {
             type="submit"
             className="w-full py-2 rounded-full bg-black text-white font-semibold hover:bg-gray-800 transition"
           >
-            Add Doubt
+            Submit
           </button>
         </form>
       </div>
