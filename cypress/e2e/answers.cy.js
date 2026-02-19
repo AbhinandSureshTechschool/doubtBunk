@@ -1,10 +1,8 @@
 describe('Answers Page E2E', () => {
     beforeEach(() => {
 
-        // Visit dynamic route
         cy.visit("http://localhost:3000/answers/123");
 
-        // Mock logged user
         cy.window().then((win) => {
             win.localStorage.setItem(
                 "doubtBunk",
@@ -16,7 +14,6 @@ describe('Answers Page E2E', () => {
             );
         });
 
-        // Mock GET answers API
         cy.intercept("GET", "/api/answers/*", {
             statusCode: 200,
             body: {

@@ -13,7 +13,6 @@ describe("DoubtBunk login", () => {
   });
 
   it("Show login form", () => {
-    cy.visit("http://localhost:3000/login");
     cy.contains("Welcome Back");
     cy.contains("Email");
     cy.contains("Password");

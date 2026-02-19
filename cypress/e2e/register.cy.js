@@ -10,7 +10,6 @@ describe("DoubtBunk register", () => {
     });
 
     it("show register form", () => {
-        cy.visit("http://localhost:3000/register");
         cy.contains("Create an Account");
         cy.contains("Name");
         cy.contains("Email");
@@ -33,5 +32,5 @@ describe("DoubtBunk register", () => {
         cy.get("#password").type("123456");
 
         cy.contains("Register").click();
-    })
-})
+    });
+});
