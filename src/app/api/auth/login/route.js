@@ -7,6 +7,7 @@ import { loginSchema } from "@/app/lib/validators";
 
 export async function POST(req) {
     try {
+        metrics.loginCounter.inc();
         const { email, password } = await req.json();
 
         if (!email || !password) {
