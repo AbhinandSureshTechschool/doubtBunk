@@ -4,6 +4,7 @@ import User from "@/app/models/User";
 import bcrypt from 'bcryptjs'
 import { NextResponse } from "next/server";
 import { loginSchema } from "@/app/lib/validators";
+import metrics from "@/app/lib/metrics";
 
 export async function POST(req) {
     try {
