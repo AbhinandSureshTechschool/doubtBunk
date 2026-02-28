@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import DoubtCard from "./components/DoubtCard";
 import DoubtEditModal from "./components/DoubtEditModal";
 import LottieLoader from "./components/LottieLoader";
+import * as Sentry from "@sentry/nextjs";
 
 
 export default function Home() {
@@ -74,7 +75,7 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
       });
       const result = await res.json();
-      if(result) {
+      if (result) {
         toast.success(result.message);
         setRefresh(prev => !prev)
         return;
@@ -90,7 +91,7 @@ export default function Home() {
     setEditDoubtModal(true);
   }
 
-  const handleEditDoubtSubmit = async(data) => {
+  const handleEditDoubtSubmit = async (data) => {
     try {
       setLoading(true);
       const res = await fetch(`/api/doubts/${data.id}`, {
@@ -99,7 +100,7 @@ export default function Home() {
         body: JSON.stringify(data)
       });
       const result = await res.json();
-      if(result) {
+      if (result) {
         toast.success(result.message);
         setRefresh(prev => !prev)
         return;
@@ -110,7 +111,7 @@ export default function Home() {
     }
   }
 
-  if(loading) {
+  if (loading) {
     return (
       <LottieLoader />
     )
@@ -165,17 +166,23 @@ export default function Home() {
         <div className="min-h-screen bg-black py-6">
           <div className="w-full mx-auto space-y-4">
             {doubts.map((item, index) => (
-              <DoubtCard key={index} title={item.title} description={item.description} onEdit={() => handleEditModal(item) } onDelete={() => handleDoubtDelete(item._id)} doubId={item._id}/>
-            )) }
+              <DoubtCard key={index} title={item.title} description={item.description} onEdit={() => handleEditModal(item)} onDelete={() => handleDoubtDelete(item._id)} doubId={item._id} />
+            ))}
           </div>
         </div>
 
       </main>
 
+      <button onClick={() => {
+        Sentry.captureException(new Error("Manual Test Error"));
+      }}  className="p-2 bg-red-500 rounded-lg hover:bg-black transition hover:border border-white text-xs border">
+        Test Sentry
+      </button>
+
       {/* Add doubt modal */}
       {addDoubtModal && <DoubtModal isOpen={addDoubtModal} onClose={() => setAddDoubtModal(false)} onSubmit={handleAddDoubtSubmit} />}
       {/* Edit doubt modal */}
-        {editDoubtModal && <DoubtEditModal isOpen={editDoubtModal} onClose={() => setEditDoubtModal(false)} onSubmit={handleEditDoubtSubmit} doubt={selectedDoubt} /> }
+      {editDoubtModal && <DoubtEditModal isOpen={editDoubtModal} onClose={() => setEditDoubtModal(false)} onSubmit={handleEditDoubtSubmit} doubt={selectedDoubt} />}
     </>
   );
 }
