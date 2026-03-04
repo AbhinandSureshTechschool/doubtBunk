@@ -4,7 +4,7 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "3002:3000"
 
   prometheus:
     image: prom/prometheus
@@ -12,8 +12,7 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
-
-  grafana:
+x  grafana:
     image: grafana/grafana
     ports:
       - "3001:3000"
