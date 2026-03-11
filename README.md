@@ -2,6 +2,11 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+use the ssh command.
+```bash
+git clone git@github.com:AbhinandSureshTechschool/doubtBunk.git
+```
+
 First, run the development server:
 
 ```bash
